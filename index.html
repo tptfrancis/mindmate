@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心伴 - 人工智能心理健康支援平台</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-brain"></i>
+                <span>心伴</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">首頁</a></li>
+                <li><a href="#chatbot" class="nav-link">AI 聊天</a></li>
+                <li><a href="#mood-tracker" class="nav-link">心情記錄</a></li>
+                <li><a href="#resources" class="nav-link">支援資源</a></li>
+                <li><a href="#community" class="nav-link">社群</a></li>
+                <li><button type="button" class="nav-link nav-button login-trigger">登入</button></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>心伴</h1>
+                <p class="hero-subtitle">專為香港大學生而設的人工智能心理健康支援平台</p>
+                <p class="hero-description">
+                    24小時情緒支援、心情記錄、匿名社群互動。你的心理健康之旅，從這裡開始。
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToSection('chatbot')">
+                        <i class="fas fa-comments"></i>
+                        開始聊天
+                    </button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('mood-tracker')">
+                        <i class="fas fa-chart-line"></i>
+                        記錄心情
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="app-preview">
+                            <div class="chat-bubble user">你好，我今日覺得好大壓力</div>
+                            <div class="chat-bubble ai">我明白。我哋一齊面對，你今日有咩煩惱？</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>心伴如何幫助你</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI 聊天機械人</h3>
+                    <p>24小時人工智能對話支援，具備情緒分析及個人化應對策略</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>心情記錄</h3>
+                    <p>記錄每日情緒，獲得AI分析的心理健康模式洞察</p>
+                </div>
+                <!-- <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>支援資源庫</h3>
+                    <p>精選健康資源、本地熱線及冥想指南</p>
+                </div> -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>匿名社群</h3>
+                    <p>在安全、受監管的環境中與同路人分享經驗</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Chatbot Section -->
+    <section id="chatbot" class="chatbot-section">
+        <div class="container">
+            <h2>AI 聊天支援</h2>
+            <p class="section-subtitle">隨時隨地與我們的AI伙伴聊天</p>
+            
+            <div class="chatbot-container">
+                <div class="chatbot-header">
+                    <div class="chatbot-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="chatbot-info">
+                        <h3>心伴 AI</h3>
+                        <span class="status online">在線</span>
+                    </div>
+                </div>
+                
+                <div class="chatbot-messages" id="chatbot-messages">
+                    <div class="message ai-message">
+                        <div class="message-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            <p>你好！我在這裡支援你。你今日感覺點樣？</p>
+                            <span class="message-time">剛剛</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chatbot-input">
+                    <input type="text" id="chat-input" placeholder="輸入你的訊息..." maxlength="500">
+                    <button id="send-button" onclick="sendMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                
+                <div class="quick-responses">
+                    <button class="quick-response" onclick="sendQuickMessage('我覺得好焦慮')">我覺得好焦慮</button>
+                    <button class="quick-response" onclick="sendQuickMessage('我需要壓力管理嘅幫助')">壓力管理幫助</button>
+                    <button class="quick-response" onclick="sendQuickMessage('我想傾下偈')">我想傾下偈</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mood Tracker Section -->
+    <section id="mood-tracker" class="mood-tracker-section">
+        <div class="container">
+            <h2>心情記錄</h2>
+            <p class="section-subtitle">記錄你的情緒健康狀況，發現情緒模式</p>
+            
+            <div class="mood-tracker-container">
+                <div class="mood-input-section">
+                    <h3>你今日感覺點樣？</h3>
+                    <div class="mood-options">
+                        <button class="mood-option" data-mood="excellent" onclick="selectMood('excellent')">
+                            <i class="fas fa-smile-beam"></i>
+                            <span>非常好</span>
+                        </button>
+                        <button class="mood-option" data-mood="good" onclick="selectMood('good')">
+                            <i class="fas fa-smile"></i>
+                            <span>幾好</span>
+                        </button>
+                        <button class="mood-option" data-mood="okay" onclick="selectMood('okay')">
+                            <i class="fas fa-meh"></i>
+                            <span>一般</span>
+                        </button>
+                        <button class="mood-option" data-mood="bad" onclick="selectMood('bad')">
+                            <i class="fas fa-frown"></i>
+                            <span>唔太好</span>
+                        </button>
+                        <button class="mood-option" data-mood="terrible" onclick="selectMood('terrible')">
+                            <i class="fas fa-sad-tear"></i>
+                            <span>好差</span>
+                        </button>
+                    </div>
+                    
+                    <div class="mood-notes">
+                        <textarea id="mood-notes" placeholder="為今日加個備註/小日記（可選）"></textarea>
+                        <div class="note-actions">
+                            <button class="btn btn-primary" onclick="saveMoodEntry()">儲存記錄</button>
+                            <button class="btn btn-outline" onclick="shareMoodToCommunity()">分享至社群</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mood-chart-section">
+                    <h3>你的心情趨勢</h3>
+                    <div class="mood-chart" id="mood-chart">
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-line"></i>
+                            <p>開始記錄心情以查看趨勢</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mood-stats">
+                        <div class="stat-card">
+                            <h4>7日平均</h4>
+                            <span class="stat-value" id="weekly-average">-</span>
+                        </div>
+                        <div class="stat-card">
+                            <h4>連續記錄</h4>
+                            <span class="stat-value" id="current-streak">-</span>
+                        </div>
+                        <div class="stat-card">
+                            <h4>總記錄數</h4>
+                            <span class="stat-value" id="total-entries">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mood-history-section">
+                    <h3>我的心情日記</h3>
+                    <p class="history-subtitle">回顧過往的心情記錄與小日記</p>
+                    <div class="mood-history-list" id="mood-history">
+                        <p class="history-empty">暫時未有心情日記，儲存第一則記錄吧！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="resources-section">
+        <div class="container">
+            <h2>健康支援資源</h2>
+            <p class="section-subtitle">精選資源支援你的心理健康之旅</p>
+            
+            <div class="resources-grid">
+                <div class="resource-category">
+                    <h3><i class="fas fa-phone"></i> 緊急熱線</h3>
+                    <div class="resource-list">
+                        <div class="resource-item">
+                            <h4>香港撒瑪利亞防止自殺會</h4>
+                            <p>24小時情緒支援熱線</p>
+                            <a href="tel:28960000" class="resource-link">2896 0000</a>
+                        </div>
+                        <div class="resource-item">
+                            <h4>社會福利署熱線</h4>
+                            <p>24小時熱線服務</p>
+                            <a href="tel:23432255" class="resource-link">2343 2255</a>
+                        </div>
+                        <div class="resource-item">
+                            <h4>醫院管理局精神健康專線</h4>
+                            <p>24小時精神健康支援</p>
+                            <a href="tel:24667350" class="resource-link">2466 7350</a>
+                        </div>
+                        <div class="resource-item">
+                            <h4>生命熱線</h4>
+                            <p>24小時防止自殺熱線</p>
+                            <a href="tel:23820000" class="resource-link">2382 0000</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resource-category">
+                    <h3><i class="fas fa-university"></i> 大學支援服務</h3>
+                    <div class="resource-list">
+                        <div class="resource-item">
+                            <h4>香港大學輔導服務</h4>
+                            <p>專業學生輔導服務</p>
+                            <a href="#" class="resource-link">了解更多</a>
+                        </div>
+                        <div class="resource-item">
+                            <h4>中文大學學生事務處</h4>
+                            <p>心理健康支援服務</p>
+                            <a href="#" class="resource-link">了解更多</a>
+                        </div>
+                        <div class="resource-item">
+                            <h4>科技大學健康中心</h4>
+                            <p>全面健康計劃</p>
+                            <a href="#" class="resource-link">了解更多</a>
+                        </div>
+                        <div class="resource-item">
+                            <h4>城市大學學生發展服務</h4>
+                            <p>學生發展及輔導服務</p>
+                            <a href="#" class="resource-link">了解更多</a>
+                        </div>
+                        <div class="resource-item">
+                            <h4>理工大學學生事務處</h4>
+                            <p>學生支援及輔導</p>
+                            <a href="#" class="resource-link">了解更多</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resource-category">
+                    <h3><i class="fas fa-spa"></i> 健康活動</h3>
+                    <div class="resource-list">
+                        <div class="resource-item">
+                            <h4>正念冥想</h4>
+                            <p>引導式冥想練習</p>
+                            <button class="resource-link" onclick="playMeditation()">開始練習</button>
+                        </div>
+                        <div class="resource-item">
+                            <h4>呼吸練習</h4>
+                            <p>減壓呼吸技巧</p>
+                            <button class="resource-link" onclick="startBreathingExercise()">開始練習</button>
+                        </div>
+                        <div class="resource-item">
+                            <h4>睡眠衛生貼士</h4>
+                            <p>改善睡眠質素</p>
+                            <button class="resource-link" onclick="showSleepTips()">查看貼士</button>
+                        </div>
+                        <div class="resource-item">
+                            <h4>香港公園散步路線</h4>
+                            <p>推薦的戶外放鬆地點</p>
+                            <button class="resource-link" onclick="showWalkingRoutes()">查看路線</button>
+                        </div>
+                        <div class="resource-item">
+                            <h4>本地文化活動</h4>
+                            <p>香港文化及藝術活動</p>
+                            <button class="resource-link" onclick="showCulturalEvents()">查看活動</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="community-section">
+        <div class="container">
+            <h2>匿名社群</h2>
+            <p class="section-subtitle">在安全、支援的環境中與同路人交流</p>
+            
+            <div class="community-container">
+                <div class="community-sidebar">
+                    <h3>討論主題</h3>
+                    <div class="topic-list">
+                        <button class="topic-button active" data-topic="general" onclick="switchTopic('general')">
+                            <i class="fas fa-comments"></i>
+                            一般討論
+                        </button>
+                        <button class="topic-button" data-topic="academic" onclick="switchTopic('academic')">
+                            <i class="fas fa-graduation-cap"></i>
+                            學業壓力
+                        </button>
+                        <button class="topic-button" data-topic="relationships" onclick="switchTopic('relationships')">
+                            <i class="fas fa-heart"></i>
+                            人際關係
+                        </button>
+                        <button class="topic-button" data-topic="selfcare" onclick="switchTopic('selfcare')">
+                            <i class="fas fa-spa"></i>
+                            自我照顧貼士
+                        </button>
+                        <button class="topic-button" data-topic="hklife" onclick="switchTopic('hklife')">
+                            <i class="fas fa-city"></i>
+                            香港生活
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="community-main">
+                    <div class="community-header">
+                        <h3 id="current-topic">一般討論</h3>
+                        <div class="topic-controls">
+                            <div class="topic-dropdown">
+                                <label for="topic-select">選擇主題</label>
+                                <select id="topic-select" onchange="onTopicSelectChange(this.value)">
+                                    <option value="general" selected>一般討論</option>
+                                    <option value="academic">學業壓力</option>
+                                    <option value="relationships">人際關係</option>
+                                    <option value="selfcare">自我照顧貼士</option>
+                                    <option value="hklife">香港生活</option>
+                                </select>
+                            </div>
+                            <div class="topic-chips" role="tablist" aria-label="討論主題快捷選擇">
+                                <button class="topic-chip active" data-topic="general" onclick="switchTopic('general')">一般</button>
+                                <button class="topic-chip" data-topic="academic" onclick="switchTopic('academic')">學業</button>
+                                <button class="topic-chip" data-topic="relationships" onclick="switchTopic('relationships')">人際</button>
+                                <button class="topic-chip" data-topic="selfcare" onclick="switchTopic('selfcare')">自我照顧</button>
+                                <button class="topic-chip" data-topic="hklife" onclick="switchTopic('hklife')">香港生活</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="showNewPostModal()">
+                            <i class="fas fa-plus"></i>
+                            新貼文
+                        </button>
+                    </div>
+                    
+                    <div class="posts-container" id="posts-container">
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="post-author">
+                                    <i class="fas fa-user-circle"></i>
+                                    <span>匿名用戶</span>
+                                </div>
+                                <span class="post-time">2小時前</span>
+                            </div>
+                            <div class="post-content">
+                                <p>考試就嚟，覺得好大壓力。有冇人都係時間管理有困難？</p>
+                            </div>
+                            <div class="post-actions">
+                                <button class="action-btn" onclick="likePost(this)">
+                                    <i class="far fa-heart"></i>
+                                    <span>12</span>
+                                </button>
+                                <button class="action-btn" onclick="showComments(this)">
+                                    <i class="far fa-comment"></i>
+                                    <span>5</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="post-author">
+                                    <i class="fas fa-user-circle"></i>
+                                    <span>匿名用戶</span>
+                                </div>
+                                <span class="post-time">4小時前</span>
+                            </div>
+                            <div class="post-content">
+                                <p>想同大家分享，我今日過得好開心！小小嘅成功都好重要。你今日有咩令你開心嘅事？</p>
+                            </div>
+                            <div class="post-actions">
+                                <button class="action-btn" onclick="likePost(this)">
+                                    <i class="far fa-heart"></i>
+                                    <span>8</span>
+                                </button>
+                                <button class="action-btn" onclick="showComments(this)">
+                                    <i class="far fa-comment"></i>
+                                    <span>3</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>心伴</h3>
+                    <p>專為香港大學生而設的人工智能心理健康支援平台</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速連結</h4>
+                    <ul>
+                        <li><a href="#home">首頁</a></li>
+                        <li><a href="#chatbot">AI 聊天</a></li>
+                        <li><a href="#mood-tracker">心情記錄</a></li>
+                        <li><a href="#resources">支援資源</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>支援</h4>
+                    <ul>
+                        <li><a href="#">私隱政策</a></li>
+                        <li><a href="#">服務條款</a></li>
+                        <li><a href="#">聯絡我們</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 心伴. 版權所有.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- New Post Modal -->
+    <div id="new-post-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>發表新貼文</h3>
+                <button class="close-btn" onclick="closeNewPostModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <textarea id="new-post-content" placeholder="與社群分享你的想法..."></textarea>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" onclick="closeNewPostModal()">取消</button>
+                    <button class="btn btn-primary" onclick="submitNewPost()">發表</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal auth-modal">
+        <div class="auth-modal-content">
+            <div class="auth-card">
+                <button class="close-btn login-close" aria-label="關閉登入視窗">&times;</button>
+                <div class="auth-brand">
+                    <div class="brand-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="brand-text">
+                        <h2>心伴 MindMate</h2>
+                        <p>守護香港大學生的心理健康旅程</p>
+                    </div>
+                </div>
+                <div class="auth-header">
+                    <h3>歡迎回來</h3>
+                    <p>登入以繼續記錄你的心情旅程</p>
+                </div>
+                <form class="auth-form" autocomplete="off">
+                    <div class="input-group">
+                        <label for="login-email">電郵地址</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="login-email" name="email" placeholder="name@example.com" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="login-password">密碼</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="login-password" name="password" placeholder="輸入密碼" required>
+                            <button type="button" class="toggle-password" aria-label="顯示或隱藏密碼">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox">
+                            <input type="checkbox" id="login-remember">
+                            <span>記住我</span>
+                        </label>
+                        <a href="#" class="link">忘記密碼？</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary auth-btn">登入</button>
+                    <div class="divider">
+                        <span>或以社交帳戶登入</span>
+                    </div>
+                    <div class="social-login">
+                        <button type="button" class="social-btn">
+                            <i class="fab fa-google"></i>
+                            Google 帳戶
+                        </button>
+                        <button type="button" class="social-btn">
+                            <i class="fab fa-apple"></i>
+                            Apple 帳戶
+                        </button>
+                    </div>
+                </form>
+                <div class="auth-footer">
+                    <p>仲未有帳戶？<a href="#" class="link">立即註冊</a></p>
+                    <button type="button" class="back-link login-close">
+                        <i class="fas fa-arrow-left"></i>
+                        返回首頁
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
